@@ -1,10 +1,8 @@
 # robots.txt — hangovr180.com
+# All search crawlers and AI / research agents are permitted.
+# Agent-oriented guide to the site: https://hangovr180.com/llms.txt
 
 User-agent: *
 Disallow:
 
-# XML sitemap
 Sitemap: https://hangovr180.com/sitemap.xml
-
-# Structured guide for AI and research agents (llms.txt convention):
-# https://hangovr180.com/llms.txt
