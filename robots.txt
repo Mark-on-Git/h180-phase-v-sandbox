@@ -1,0 +1,10 @@
+# robots.txt — hangovr180.com
+
+User-agent: *
+Disallow:
+
+# XML sitemap
+Sitemap: https://hangovr180.com/sitemap.xml
+
+# Structured guide for AI and research agents (llms.txt convention):
+# https://hangovr180.com/llms.txt
