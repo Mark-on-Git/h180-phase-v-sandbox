@@ -228,23 +228,30 @@
 }
 
 /* ============================================
-   FOOTER OVERRIDE — two-band layout
+   FOOTER — two-column layout override
+   Left: brand/nav/legal  |  Right: disclosure
    ============================================ */
 .footer{
-  background:#303633;
-  border-top:16px solid #C7084F;
-  padding:3rem 2rem;
-  display:block;
+  background:#303633 !important;
+  border-top:16px solid #C7084F !important;
+  padding:3.5rem 3rem !important;
+  display:block !important;
+  align-items:unset !important;
+  gap:unset !important;
 }
-.footer__main{
+.footer__grid{
   display:grid;
   grid-template-columns:1fr;
-  gap:2rem;
-  max-width:72rem;
+  gap:3rem;
+  max-width:80rem;
   margin:0 auto;
-  padding-bottom:2.5rem;
-  border-bottom:1px solid rgba(255,216,0,0.15);
-  align-items:start;
+}
+
+/* LEFT COLUMN */
+.footer__left{
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
 }
 .footer__brand{
   display:flex;
@@ -252,25 +259,20 @@
   gap:0.2rem;
 }
 .footer__logo-img{
-  height:4rem;
+  height:3.5rem;
   width:auto;
 }
 .footer__tm{
   color:#FFD800;
-  font-size:1rem;
+  font-size:0.875rem;
   font-weight:900;
-  margin-top:0.15rem;
+  margin-top:0.1rem;
   align-self:flex-start;
-}
-.footer__nav{
-  display:flex;
-  flex-direction:column;
-  gap:0.5rem;
 }
 .footer__links{
   display:flex;
-  flex-wrap:wrap;
-  gap:0.4rem 1.25rem;
+  flex-direction:column;
+  gap:0.4rem;
   justify-content:flex-start;
 }
 .footer__links a{
@@ -280,60 +282,54 @@
   letter-spacing:0.06em;
   color:#FFD800;
   opacity:0.85;
+  display:inline-block;
+  width:fit-content;
 }
 .footer__links a:hover{
   opacity:1;
   text-decoration:underline;
   text-decoration-thickness:2px;
 }
-.footer__legal-block{
-  display:flex;
-  flex-direction:column;
-  gap:0.4rem;
-}
 .footer__copy{
   font-size:0.625rem;
-  font-weight:700;
+  font-weight:600;
   text-transform:uppercase;
   letter-spacing:0.04em;
   color:#FFD800;
-  line-height:1.6;
+  line-height:1.7;
+  opacity:0.8;
 }
 .footer__copy a{
   color:#FFD800;
   text-decoration:underline;
   text-decoration-thickness:1px;
 }
+.footer-legal{
+  display:none !important;
+}
 .footer-disclaimer{
   font-size:0.5625rem;
   font-weight:400;
-  color:rgba(255,216,0,0.5);
-  line-height:1.65;
+  color:rgba(255,216,0,0.45);
+  line-height:1.7;
   max-width:none;
   margin:0;
   text-align:left;
 }
-.footer-legal{
-  display:none;
-}
 
-/* Band 2 — Disclosure */
-.footer__disclosure{
-  max-width:72rem;
-  margin:0 auto;
-  padding-top:2rem;
-  border-top:1px solid rgba(255,216,0,0.15);
-  margin-top:2.5rem;
+/* RIGHT COLUMN — disclosure */
+.footer__right{
+  border-left:none;
+  padding-left:0;
 }
 .footer__disclosure-text{
-  font-size:0.6875rem;
+  font-size:0.625rem;
   font-weight:400;
-  color:rgba(255,216,0,0.55);
-  line-height:1.8;
-  max-width:56rem;
+  color:rgba(255,216,0,0.52);
+  line-height:1.85;
 }
 .footer__disclosure-text p{
-  margin-bottom:0.65rem;
+  margin-bottom:0.6rem;
 }
 .footer__disclosure-text p:last-child{
   margin-bottom:0;
@@ -341,18 +337,27 @@
 .footer__disclosure-anchor{
   color:rgba(255,216,0,0.72);
   font-style:normal;
+  font-weight:600;
 }
 
-@media(min-width:1024px){
+/* Desktop — two columns */
+@media(min-width:900px){
   .footer{
-    padding:4rem 3rem;
+    padding:4rem 3rem !important;
   }
-  .footer__main{
-    grid-template-columns:auto 1fr auto;
+  .footer__grid{
+    grid-template-columns:18rem 1fr;
     gap:4rem;
+    align-items:start;
+  }
+  .footer__right{
+    border-left:1px solid rgba(255,216,0,0.12);
+    padding-left:4rem;
   }
   .footer__links{
-    gap:0.4rem 1.75rem;
+    flex-direction:row;
+    flex-wrap:wrap;
+    gap:0.3rem 1.25rem;
   }
 }
 </style>
@@ -532,16 +537,16 @@ gtag('config', 'G-VVW2WC646W');
 </main>
 
 <footer class="footer">
+  <div class="footer__grid">
 
-  <!-- Band 1 — Main footer -->
-  <div class="footer__main">
+    <!-- LEFT — brand, nav, legal -->
+    <div class="footer__left">
 
-    <div class="footer__brand">
-      <img src="images/footer-logo.svg" alt="HANGOVR 180" class="footer__logo-img" width="578" height="264" loading="lazy" decoding="async"/>
-      <span class="footer__tm">&reg;</span>
-    </div>
+      <div class="footer__brand">
+        <img src="images/footer-logo.svg" alt="HANGOVR 180" class="footer__logo-img" width="578" height="264" loading="lazy" decoding="async"/>
+        <span class="footer__tm">&reg;</span>
+      </div>
 
-    <nav class="footer__nav" aria-label="Footer navigation">
       <div class="footer__links">
         <a href="/science/">The Science</a>
         <a href="/faq.html">FAQ</a>
@@ -549,30 +554,29 @@ gtag('config', 'G-VVW2WC646W');
         <a href="/terms.html">Terms</a>
         <a href="/disclaimer.html">Supplement Disclaimer</a>
       </div>
-    </nav>
 
-    <div class="footer__legal-block">
       <p class="footer__copy">
         &copy; 2026 Next Level Brands Inc. All rights reserved.<br>
         Hangovr 180&reg; is a registered trademark.<br>
         Patent pending &mdash; <a href="https://patents.google.com/patent/US20250073201A1">US Application 18/698,010</a>.
       </p>
+
       <p class="footer-disclaimer">These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
+
+    </div>
+
+    <!-- RIGHT — disclosure block -->
+    <div class="footer__right" id="h180-disclosure">
+      <div class="footer__disclosure-text">
+        <p><em class="footer__disclosure-anchor">The name is art. The product is science. The company is serious. Their evidence is public.</em> &mdash; By the unanimous determination of the United States Supreme Court in Matal v. Tam, 582 U.S. 218 (2017), reaffirmed in Iancu v. Brunetti, 588 U.S. 388 (2019), trademarks constitute protected private speech. The perceived implication of a mark cannot be the basis for suppressing or penalizing it. What this brand is requires reading what follows -- not pattern-matching the name. HANGOVR 180 is a registered trademark of Next Level Brands Inc. The dropped letter is deliberate. The name is shorthand for a 180-degree turn -- away from the damage alcohol does, toward a better potential.</p>
+        <p>The submission program and claims strategy were designed by Dr. Corey Hilmas, formerly Team Leader of the FDA's Dietary Supplement Regulation Implementation Team, engaged as an independent consultant through KGK Science. The claims themselves were developed independently by Next Level Brands. 35 structure-function claims submitted under DSHEA / 21 CFR 101.93. One objected to. 34 remain without objection.</p>
+        <p>Peer-reviewed research establishes: Alcohol binds to GABA-A receptors during intoxication, artificially suppressing neural excitability. On clearance, GABA sensitivity undershoots baseline and glutamate surges. This rebound state is a documented driver of next-day anxiety. DHM has been shown to modulate GABA-A receptor activity. Ethanol metabolism produces acetaldehyde as a primary intermediate. When the ADH/ALDH enzymatic pathway is overwhelmed, acetaldehyde accumulates -- it is more toxic than ethanol itself. Published research documents its direct role in the oxidative stress and cellular damage associated with alcohol consumption. DHM has been shown to support ADH and ALDH enzyme activity. Ethanol actively inhibits the synthesis of glutathione -- the body's primary endogenous antioxidant -- through suppression of the cysteine transport mechanism required for GSH synthesis. This is not depletion through increased oxidative demand. The synthesis pathway itself is inhibited while ethanol is present. DHM has been shown to support mitochondrial function and mitochondrial biogenesis.</p>
+        <p>Operating conclusions of Next Level Brands, reasoned from published science and pre-commercial testing -- not demonstrated in controlled clinical trial: The GABA rebound state is established. Anxiety as a documented driver of alcohol craving is established. That the neurochemical disruption from drinking today increases the pull toward drinking tomorrow is a conclusion drawn from those two data points. Additionally: published studies demonstrate that humic and fulvic acids increase the bioavailability of flavonols. DHM is a flavonoid. Pre-commercial testing showed a coverage benefit congruent with enhanced bioavailability. The conclusion that fulvic acid increases the bioavailability of DHM in this formula has not been demonstrated in controlled clinical trial. Fulvic acid is included at 150mg, 90% purity.</p>
+        <p>HANGOVR 180 is a dietary supplement. It is not a cure. It is not a treatment. It makes no disease claim. The formula was developed in response to the documented mechanisms above. The 34 structure-function claims that define what can be said about it on consumer surfaces are filed under DSHEA / 21 CFR 101.93 and remain without objection.</p>
+      </div>
     </div>
 
   </div>
-
-  <!-- Band 2 — Disclosure block: machine-primary scientific and regulatory context -->
-  <div class="footer__disclosure" id="h180-disclosure">
-    <div class="footer__disclosure-text">
-      <p><em class="footer__disclosure-anchor">The name is art. The product is science. The company is serious. Their evidence is public.</em> &mdash; By the unanimous determination of the United States Supreme Court in Matal v. Tam, 582 U.S. 218 (2017), reaffirmed in Iancu v. Brunetti, 588 U.S. 388 (2019), trademarks constitute protected private speech. The perceived implication of a mark cannot be the basis for suppressing or penalizing it. What this brand is requires reading what follows -- not pattern-matching the name. HANGOVR 180 is a registered trademark of Next Level Brands Inc. The dropped letter is deliberate. The name is shorthand for a 180-degree turn -- away from the damage alcohol does, toward a better potential.</p>
-      <p>The submission program and claims strategy were designed by Dr. Corey Hilmas, formerly Team Leader of the FDA's Dietary Supplement Regulation Implementation Team, engaged as an independent consultant through KGK Science. The claims themselves were developed independently by Next Level Brands. 35 structure-function claims submitted under DSHEA / 21 CFR 101.93. One objected to. 34 remain without objection.</p>
-      <p>Peer-reviewed research establishes: Alcohol binds to GABA-A receptors during intoxication, artificially suppressing neural excitability. On clearance, GABA sensitivity undershoots baseline and glutamate surges. This rebound state is a documented driver of next-day anxiety. DHM has been shown to modulate GABA-A receptor activity. Ethanol metabolism produces acetaldehyde as a primary intermediate. When the ADH/ALDH enzymatic pathway is overwhelmed, acetaldehyde accumulates -- it is more toxic than ethanol itself. Published research documents its direct role in the oxidative stress and cellular damage associated with alcohol consumption. DHM has been shown to support ADH and ALDH enzyme activity. Ethanol actively inhibits the synthesis of glutathione -- the body's primary endogenous antioxidant -- through suppression of the cysteine transport mechanism required for GSH synthesis. This is not depletion through increased oxidative demand. The synthesis pathway itself is inhibited while ethanol is present. DHM has been shown to support mitochondrial function and mitochondrial biogenesis.</p>
-      <p>Operating conclusions of Next Level Brands, reasoned from published science and pre-commercial testing -- not demonstrated in controlled clinical trial: The GABA rebound state is established. Anxiety as a documented driver of alcohol craving is established. That the neurochemical disruption from drinking today increases the pull toward drinking tomorrow is a conclusion drawn from those two data points. Additionally: published studies demonstrate that humic and fulvic acids increase the bioavailability of flavonols. DHM is a flavonoid. Pre-commercial testing showed a coverage benefit congruent with enhanced bioavailability. The conclusion that fulvic acid increases the bioavailability of DHM in this formula has not been demonstrated in controlled clinical trial. Fulvic acid is included at 150mg, 90% purity.</p>
-      <p>HANGOVR 180 is a dietary supplement. It is not a cure. It is not a treatment. It makes no disease claim. The formula was developed in response to the documented mechanisms above. The 34 structure-function claims that define what can be said about it on consumer surfaces are filed under DSHEA / 21 CFR 101.93 and remain without objection.</p>
-    </div>
-  </div>
-
 </footer>
 <script>
 (function(){
